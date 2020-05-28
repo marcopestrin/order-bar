@@ -3,8 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container'
 import Letters from '../letters/letters'
 import ListCocktails from '../listCocktails/listCocktails'
+import RecapOrder from '../recapOrder/RecapOrder'
 
 export default class Template extends Component { 
+
   render () {
     return ( 
       <>
@@ -13,11 +15,8 @@ export default class Template extends Component {
             <Grid item xs={1}>
               <Letters />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={11}>
               <ListCocktails />
-            </Grid>
-            <Grid item xs={5}>
-              ORDER DETAILS
             </Grid>
           </Grid>
         </Container>

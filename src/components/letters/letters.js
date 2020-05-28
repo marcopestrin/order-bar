@@ -9,7 +9,6 @@ export default class Letters extends Component {
     return ( 
       <>
       <AppBar position="static" color="default">
-
           <Tabs
             orientation='vertical'
           >
@@ -17,7 +16,6 @@ export default class Letters extends Component {
               return (
                 <Tab
                   label={item}
-                  key={index.toString()}
                 >
                   {item}
                 </Tab>
