@@ -1,0 +1,12 @@
+.containerRecapOrder {
+  background-color:#ffb74d;
+  padding:15px;
+  color:#115293
+}
+.containerRecapOrder h3 {
+  font-size:25px;
+  color:#115293
+}
+.containerRecapOrder .sendDataButton {
+  margin: 15px 0px;
+}

@@ -4,3 +4,27 @@
 .addToOrder {
   display: 'block',
 }
+.contentDetails {
+  padding:20px;
+}
+.cocktailName p {
+  font-size:20px;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline;
+}
+.cocktailRow {
+  margin: 10px 0;
+}
+.rowCocktail {
+  margin-bottom:35px;
+  /* background-color:#81c784; */
+  background-color: rgba(0,0,0,0.1);
+  padding:15px;
+}
+.tag {
+  margin-left:10px;
+}
+h4.guide {
+  margin:20px 0;
+}

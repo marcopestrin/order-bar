@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import './styles.css'
 import MuiExpansionPanel from '@material-ui/core/ExpansionPanel';
-import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
-import Button from '@material-ui/core/Button';
 
 export default class Cocktail extends Component { 
 
@@ -22,7 +20,7 @@ export default class Cocktail extends Component {
     if(this.props.data.strTags) {
       let tags = this.props.data.strTags.split(',')
       for (let i=0; i<tags.length; i++) {
-        tagsToRender.push(<Chip key={tags[i]+'-'+this.props.data} label={tags[i]} />)
+        tagsToRender.push(<Chip className="tag" color="primary" key={tags[i]+'-'+this.props.data} label={tags[i]} />)
       }
     }
     return ( 
@@ -30,6 +28,7 @@ export default class Cocktail extends Component {
         <MuiExpansionPanel
           square
           key={this.props.data.idDrink}
+          className='cocktailRow'
         >
           <MuiExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
@@ -37,11 +36,12 @@ export default class Cocktail extends Component {
             id={this.props.data.idDrink}
             key={this.props.data.idDrink}
           >
-            <Typography>{this.props.data.strDrink} {tagsToRender}</Typography>
+            <Typography className='cocktailName'>
+              <p>{this.props.data.strDrink}</p> {tagsToRender}
+            </Typography>
           </MuiExpansionPanelSummary>
 
-          <MuiExpansionPanelDetails className="detailsCocktail">
-              
+          <div className='contentDetails'>
             <Typography><strong>Category:</strong> {this.props.data.strCategory}</Typography><br />
             <Typography><strong>Ingredients:</strong> {ingredients}</Typography><br />
             <Typography><strong>Instructions:</strong> {this.props.data.strInstructions}</Typography><br />
@@ -52,8 +52,7 @@ export default class Cocktail extends Component {
                 alt={this.props.data.strDrink}
               />
             )}
-
-          </MuiExpansionPanelDetails>
+          </div>   
         </MuiExpansionPanel>
       </>
     )

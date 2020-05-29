@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Button from '@material-ui/core/Button';
+
 export default class Letters extends Component { 
+
   render () {
     const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
     return ( 
       <>
-      <AppBar position="static" color="default">
-          <Tabs
-            orientation='vertical'
-          >
-            {letters.map( (item,index) => {
-              return (
-                <Tab
-                  label={item}
-                >
-                  {item}
-                </Tab>
-              )
-            })}
- 
-          </Tabs>
-      </AppBar>
+        {letters.map( (item,index) => {
+          return (
+            <Button
+              color="primary"
+              size="small"
+              variant={item === this.props.letterSelected ? 'contained' : 'text'}
+              href="#contained-buttons"
+              onClick={this.props.action.bind(this,item)}
+            >
+              {item}
+            </Button>
+          )
+        })}
+
       </>
     )
   }
