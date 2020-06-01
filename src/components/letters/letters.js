@@ -11,6 +11,7 @@ export default class Letters extends Component {
         {letters.map( (item,index) => {
           return (
             <Button
+              key={index}
               color="primary"
               size="small"
               variant={item === this.props.letterSelected ? 'contained' : 'text'}

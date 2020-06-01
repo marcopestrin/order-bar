@@ -7,6 +7,8 @@ import RecapOrder from '../recapOrder/RecapOrder'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './styles.css'
 import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 export default class ListCocktails  extends Component { 
   constructor(props){
@@ -20,6 +22,7 @@ export default class ListCocktails  extends Component {
     this.getData = this.getData.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.clearOrder = this.clearOrder.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   addItem(item) {
@@ -75,14 +78,29 @@ export default class ListCocktails  extends Component {
     this.getData('a')
   }
 
-  render () {
+  handleClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({
+      ...this.state,
+      cleared: false,
+    })
+  };
 
+  render () {
+    function Alert(props) {
+      return <MuiAlert elevation={6} variant="filled" {...props} />;
+    }
+    
     const cocktail = this.state.cocktails.drinks && this.state.cocktails.drinks.map((element,index) =>
-      <div className="rowCocktail">
+      <div className="rowCocktail" key={'row_' + index}>
         <Cocktail
+          key={index}
           data={element}
         />
         <Button
+          key={'button_' + index}
           variant="contained"
           color="primary"
           size="small"
@@ -100,6 +118,20 @@ export default class ListCocktails  extends Component {
 
     const spinner = (
       <CircularProgress />
+    )
+    const notify = (
+      <Snackbar
+        open={this.state.cleared}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
+      >
+        <Alert
+          onClose={this.state.cleared}
+          severity="success"
+        >
+          Order sent successfully
+        </Alert>
+      </Snackbar>
     )
     return ( 
       <>
@@ -121,6 +153,7 @@ export default class ListCocktails  extends Component {
                 clearOrder={this.clearOrder}
                 drinks={this.state.order}
               />
+              {notify}
             </Grid>
           </Grid>
         </Container>

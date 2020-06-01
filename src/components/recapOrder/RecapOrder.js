@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,47 +14,29 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+
 export default function RecapOrder(props) { 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-
   const orderContent = props.drinks && props.drinks.map((element,index) =>
-    <>
-      <List>
-        <ListItem button>
-          <ListItemText primary={element.name} />
-          <img
-              src={element.img}
-              width="100"
-              alt={element.id}
-            />
-          <ClearIcon
-            onClick={props.removeItem.bind(this,index)}
+    <List key={index}>
+      <ListItem>
+        <ListItemText
+          primary={element.name}
           />
+        <img
+          src={element.img}
+          width="100"
+          alt={element.id}
+        />
+        <ClearIcon
+          className='clearIcon'
+          onClick={props.removeItem.bind(this,index)}
+        />
         </ListItem>
         <Divider />
-      </List>
-    </>
-  )
-  const notify = (
-    <>
-      <Snackbar open={props.cleared} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success">
-          Sent
-        </Alert>
-      </Snackbar>
-    </>
+    </List>
   )
   return ( 
-    <div className="containerRecapOrder">
-
-      
+    <div className="containerRecapOrder" key={'unique'}>    
       <Typography
         align='center'
         color='primary'
@@ -71,7 +53,7 @@ export default function RecapOrder(props) {
         Send Order
       </Button>
       { orderContent }
-      { notify }
+
     </div>
   )
 }

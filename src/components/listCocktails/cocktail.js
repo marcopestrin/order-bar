@@ -37,8 +37,9 @@ export default class Cocktail extends Component {
             key={this.props.data.idDrink}
           >
             <Typography className='cocktailName'>
-              <p>{this.props.data.strDrink}</p> {tagsToRender}
+                {this.props.data.strDrink}
             </Typography>
+            {tagsToRender}
           </MuiExpansionPanelSummary>
 
           <div className='contentDetails'>
